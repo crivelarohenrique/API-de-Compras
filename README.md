@@ -12,7 +12,7 @@
 
 ### Clonar o Repositório
 
-git clone [(https://github.com/crivelarohenrique/API-de-Compras)](https://github.com/crivelarohenrique/API-de-Compras.git)
+git clone https://github.com/crivelarohenrique/API-de-Compras.git
 
 
 ## Configuração do Backend
