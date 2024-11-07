@@ -1,0 +1,79 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       String   @id @default(cuid())
+  username String   @unique
+  password String
+  balance  Float    @default(500)
+
+  shelves   Shelf[]
+  carts     Cart[]
+  
+  @@map("users")
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String
+  imageSrc  String
+  alt       String
+  price     Float
+  category  String
+  author    String
+  synopsis  String
+
+  shelfItems ShelfItem[]
+  cartItems  CartItem[]
+  
+  @@map("products")
+}
+
+model Shelf {
+  id        String     @id @default(cuid())
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String     
+  items     ShelfItem[]
+
+  @@map("shelves")
+}
+
+model ShelfItem {
+  id        String   @id @default(cuid())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String   
+  quantity  Int      @default(1)
+  addedAt   DateTime @default(now())
+  shelf     Shelf    @relation(fields: [shelfId], references: [id])
+  shelfId   String   
+
+  @@map("shelf_items")
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  user      User?      @relation(fields: [userId], references: [id])
+  userId    String?    
+  username  String?
+  items     CartItem[]
+  createdAt DateTime   @default(now())
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String  
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  cartId    String   
+
+  @@map("cart_items")
+}
