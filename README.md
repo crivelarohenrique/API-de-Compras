@@ -12,7 +12,7 @@
 
 ### Clonar o Repositório
 
-git clone [[https://github.com/crivelarohenrique/Agender.git](https://github.com/crivelarohenrique/API-de-Tarefas)](https://github.com/crivelarohenrique/API-de-Compras)
+git clone [(https://github.com/crivelarohenrique/API-de-Compras)](https://github.com/crivelarohenrique/API-de-Compras.git)
 
 
 ## Configuração do Backend
